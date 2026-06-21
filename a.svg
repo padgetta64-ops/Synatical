@@ -1,27 +1,20 @@
-<svg width="512" height="512" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
-  <!-- Green Hexagon -->
-  <polygon
-    points="256,40 430,140 430,372 256,472 82,372 82,140"
-    fill="#6FAF3A"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="200" height="200">
+  <polygon points="50,5 89,27.5 89,72.5 50,95 11,72.5 11,27.5" fill="#6c9c34" />
 
-  <!-- Black Face -->
-  <path
-    d="M170 180
-       L280 130
-       L370 190
-       L360 320
-       L250 370
-       L150 310
-       Z"
-    fill="#111111"/>
+  <path d="M 14 38 
+           L 26 24 
+           L 45 31 
+           L 60 19 
+           L 78 28 
+           L 81 48 
+           L 64 64 
+           L 45 54 
+           L 22 65 
+           L 13 54 
+           Z" 
+        fill="#000000" />
 
-  <!-- Left Eye -->
-  <rect x="205" y="205" width="22" height="70"
-        rx="4" fill="white"
-        transform="rotate(-12 216 240)"/>
+  <polygon points="30,39 36,41 38,55 32,53" fill="#ffffff" />
 
-  <!-- Right Eye -->
-  <rect x="300" y="190" width="22" height="80"
-        rx="4" fill="white"
-        transform="rotate(8 311 230)"/>
+  <polygon points="62,32 70,35 73,49 65,46" fill="#ffffff" />
 </svg>
