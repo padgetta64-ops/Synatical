@@ -1,1 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Synatical</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    }
+    body {
+      background-image: url('background.png');
+      background-repeat: repeat;
+      background-size: 500px auto;
+      animation: scroll 20s linear infinite;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
 
+    @keyframes scroll {
+      from { background-position: 0 0; }
+      to { background-position: 500px 500px; }
+    }
+
+    .box {
+      background: #fff;
+      padding: 30px;
+      width: 400px;
+      text-align: center;
+      border-radius: 4px;
+      border: 3px solid #719a35;
+    }
+    .logo {
+      width: 60px;
+      height: 60px;
+      margin: 0 auto 15px auto;
+      display: block;
+    }
+    h1 {
+      font-size: 32px;
+      font-weight: 700;
+      color: #719a35;
+      margin-bottom: 25px;
+    }
+    .alert {
+      color: #719a35;
+      font-size: 14px;
+      font-weight: 700;
+      margin-bottom: 15px;
+      padding: 8px;
+      border: 2px dashed #719a35;
+      border-radius: 4px;
+      background: #fafdf6;
+      display: none;
+    }
+    .row {
+      position: relative;
+      margin-bottom: 12px;
+    }
+    input[type="text"], input[type="password"] {
+      width: 100%;
+      padding: 12px;
+      border: 2px solid #719a35;
+      border-radius: 4px;
+      font-size: 16px;
+      background: #fff;
+      color: #000;
+    }
+    input::placeholder {
+      color: #719a35;
+      opacity: 0.7;
+    }
+    input:focus {
+      outline: none;
+      border-color: #557427;
+      background-color: #fafdf6;
+    }
+    .eye {
+      position: absolute;
+      right: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #719a35;
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+      user-select: none;
+    }
+    .eye:hover {
+      text-decoration: underline;
+    }
+    .check-row {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      margin-top: 15px;
+      margin-bottom: 15px;
+      font-size: 14px;
+      color: #000;
+    }
+    .check-row input[type="checkbox"] {
+      accent-color: #719a35;
+      width: 16px;
+      height: 16px;
+      cursor: pointer;
+    }
+    .btn {
+      width: 100%;
+      padding: 10px;
+      background: #fff;
+      border: 2px solid #719a35;
+      color: #719a35;
+      font-size: 16px;
+      font-weight: 600;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background 0.2s ease, transform 0.1s ease;
+    }
+    .btn:hover {
+      background: #f2f4f5;
+    }
+    .btn:active {
+      transform: scale(0.98);
+    }
+    .link {
+      color: #719a35;
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 600;
+      display: inline-block;
+      margin-top: 15px;
+      margin-bottom: 15px;
+    }
+    .footer {
+      margin-top: 10px;
+      font-size: 14px;
+      color: #000;
+      line-height: 1.5;
+    }
+    .switch, .tos {
+      color: #719a35;
+      font-weight: 700;
+      cursor: pointer;
+      text-decoration: none;
+    }
+    .tos:hover, .switch:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="box" id="card">
+    <img src="logo.png" alt="Logo" class="logo">
+    <h1 id="heading">Login to Synatical</h1>
+    
+    <div class="alert" id="error"></div>
+
+    <div>
+      <div class="row">
+        <input type="text" id="user" placeholder="Email/Username..">
+      </div>
+      <div class="row">
+        <input type="password" id="pass" placeholder="Password..">
+        <span class="eye" id="show-btn">Show</span>
+      </div>
+    </div>
+
+    <div class="check-row">
+      <input type="checkbox" id="check">
+      <label for="check">I agree to the <a href="rules.html" target="_blank" class="tos">Terms of Service</a></label>
+    </div>
+
+    <button class="btn" id="go">Log In</button>
+    
+    <a href="#" class="link" id="lost">Forgot Password or Username?</a>
+    
+    <div class="footer" id="foot">
+      Don't have an account? <span class="switch" id="toggle">Sign Up</span>
+    </div>
+  </div>
+
+  <script>
+    const card = document.getElementById('card');
+    const heading = document.getElementById('heading');
+    const user = document.getElementById('user');
+    const pass = document.getElementById('pass');
+    const showBtn = document.getElementById('show-btn');
+    const check = document.getElementById('check');
+    const error = document.getElementById('error');
+    const go = document.getElementById('go');
+    const foot = document.getElementById('foot');
+    const lost = document.getElementById('lost');
+    let loginView = true;
+
+    showBtn.addEventListener('click', () => {
+      if (pass.type === 'password') {
+        pass.type = 'text';
+        showBtn.textContent = 'Hide';
+      } else {
+        pass.type = 'password';
+        showBtn.textContent = 'Show';
+      }
+    });
+
+    go.addEventListener('click', () => {
+      error.style.display = 'none';
+
+      const uVal = user.value.trim();
+      const pVal = pass.value.trim();
+
+      if (!uVal || !pVal) {
+        error.textContent = "Please fill in all inputs.";
+        error.style.display = 'block';
+        return;
+      }
+
+      if (!check.checked) {
+        error.textContent = "You must check the box to agree to the rules first!";
+        error.style.display = 'block';
+        return;
+      }
+
+      let localUsers = JSON.parse(localStorage.getItem('synatical_users')) || [];
+
+      if (loginView) {
+        const found = localUsers.find(u => u.username.toLowerCase() === uVal.toLowerCase() && u.password === pVal);
+        if (!found) {
+          error.textContent = "Invalid username or password.";
+          error.style.display = 'block';
+        } else {
+          alert(`Welcome back, ${found.username}!`);
+        }
+      } else {
+        const taken = localUsers.find(u => u.username.toLowerCase() === uVal.toLowerCase());
+        if (taken) {
+          error.textContent = "Username already taken.";
+          error.style.display = 'block';
+        } else {
+          localUsers.push({ username: uVal, password: pVal });
+          localStorage.setItem('synatical_users', JSON.stringify(localUsers));
+          alert("Account created successfully!");
+          
+          heading.textContent = 'Login to Synatical';
+          go.textContent = 'Log In';
+          lost.style.display = 'inline-block';
+          foot.innerHTML = 'Don\'t have an account? <span class="switch" id="toggle">Sign Up</span>';
+          loginView = true;
+          user.value = '';
+          pass.value = '';
+          check.checked = false;
+        }
+      }
+    });
+
+    card.addEventListener('click', (e) => {
+      if (e.target.id === 'toggle') {
+        error.style.display = 'none';
+        check.checked = false;
+        user.value = '';
+        pass.value = '';
+        
+        if (loginView) {
+          heading.textContent = 'Sign Up to Synatical';
+          go.textContent = 'Sign Up';
+          lost.style.display = 'none';
+          foot.innerHTML = 'Already have an account? <span class="switch" id="toggle">Log In</span>';
+          loginView = false;
+        } else {
+          heading.textContent = 'Login to Synatical';
+          go.textContent = 'Log In';
+          lost.style.display = 'inline-block';
+          foot.innerHTML = 'Don\'t have an account? <span class="switch" id="toggle">Sign Up</span>';
+          loginView = true;
+        }
+      }
+    });
+  </script>
+</body>
+</html>
