@@ -1,0 +1,27 @@
+<svg width="512" height="512" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+  <!-- Green Hexagon -->
+  <polygon
+    points="256,40 430,140 430,372 256,472 82,372 82,140"
+    fill="#6FAF3A"/>
+
+  <!-- Black Face -->
+  <path
+    d="M170 180
+       L280 130
+       L370 190
+       L360 320
+       L250 370
+       L150 310
+       Z"
+    fill="#111111"/>
+
+  <!-- Left Eye -->
+  <rect x="205" y="205" width="22" height="70"
+        rx="4" fill="white"
+        transform="rotate(-12 216 240)"/>
+
+  <!-- Right Eye -->
+  <rect x="300" y="190" width="22" height="80"
+        rx="4" fill="white"
+        transform="rotate(8 311 230)"/>
+</svg>
