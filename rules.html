@@ -33,12 +33,36 @@
       border-radius: 4px;
       border: 3px solid #719a35;
       color: #000;
+      position: relative;
+    }
+    .top-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+      border-bottom: 3px solid #719a35;
+      padding-bottom: 15px;
     }
     h1 {
       color: #719a35;
       font-size: 28px;
-      margin-bottom: 20px;
-      text-align: center;
+    }
+    .back-btn {
+      background: #fff;
+      color: #719a35;
+      border: 2px solid #719a35;
+      padding: 6px 16px;
+      font-size: 14px;
+      font-weight: 700;
+      border-radius: 4px;
+      text-decoration: none;
+      transition: background 0.1s ease, transform 0.1s ease;
+    }
+    .back-btn:hover {
+      background: #fafdf6;
+    }
+    .back-btn:active {
+      transform: scale(0.96);
     }
     h2 {
       color: #719a35;
@@ -67,7 +91,11 @@
 <body>
 
   <div class="main-box">
-    <h1>Terms of Service</h1>
+    <div class="top-row">
+      <h1>Terms of Service</h1>
+      <a href="index.html" class="back-btn">Back to Login</a>
+    </div>
+
     <p>Welcome to Synatical. Please read these rules. If you use our site, you say yes to all of these rules. If you do not like these rules, do not use our site.</p>
 
     <h2>1. Your Name and Account</h2>
